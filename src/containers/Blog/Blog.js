@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Posts from '../Blog/Posts/Posts';
-import {Route} from 'react-router-dom';
+import {Router,Route} from 'react-router-dom';
 import './Blog.css';
 
 class Blog extends Component {
@@ -22,6 +22,7 @@ class Blog extends Component {
             </div>
         );
     }
+
 }
 
 export default Blog;
