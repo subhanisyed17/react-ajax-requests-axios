@@ -2,3 +2,4 @@
 <p>--> axios is a third-party framework for sending AJAX requests in JavaScript</p>
 <p>--> Demonstarted using Interceptors for Global execution level and also used multiple instances of axios for overriding the 
 configuration wherever required</p>
+<p>Added Routing to make single page application feel like multi-page application</p>
