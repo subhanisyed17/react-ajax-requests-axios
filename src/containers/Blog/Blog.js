@@ -1,61 +1,24 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Post from '../../components/Post/Post';
-import FullPost from '../../components/FullPost/FullPost';
-import NewPost from '../../components/NewPost/NewPost';
+import Posts from '../Blog/Posts/Posts';
+import {Route} from 'react-router-dom';
 import './Blog.css';
 
 class Blog extends Component {
 
-    state = {
-        posts  : [],
-        selectedPost : null,
-        error : false
-    }
-
-    componentDidMount(){
-        axios.get('posts')
-             .then(response => {
-                  const posts = response.data.slice(0,4);
-                  const updatedPosts = posts.map(post => {
-                      return {
-                          ...post,
-                          author : 'Subhani'
-                      }
-                  }) 
-                  this.setState({posts : updatedPosts})
-             })
-             .catch(error => {
-                 this.setState({error : true});
-             });
-    }
-
-    postSelectedHandler = (id) => {
-        this.setState({selectedPost : id})
-        console.log("[postSelectedHandler] is executed");
-    }
-
     render () {
-            let posts = <p style = {{textAlign : "center"}}>Something Went Wrong!</p>
-            if(!this.state.error){
-                posts = this.state.posts.map(post => {
-                    return <Post key ={post.id} 
-                                title = {post.title} 
-                                author = {post.author}
-                                clicked = {() => this.postSelectedHandler(post.id)}/>
-                })
-            }
+        
         return (
             <div>
-                <section className="Posts">
-                    {posts}
-                </section>
-                <section>
-                    <FullPost id = {this.state.selectedPost}/>
-                </section>
-                <section>
-                    <NewPost />
-                </section>
+                <header>
+                    <nav className= "Blog">
+                        <ul>
+                            <li><a href = "/">Home</a></li>
+                            <li><a href = "/new-post">New Post</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                <Route path = "/" exact render = {() => <h1>This is an exact match for the current route</h1>}/>
+                <Route path = "/" render = {() => <h1>This is a default match for all the routes</h1>}/>
             </div>
         );
     }
